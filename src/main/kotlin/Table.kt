@@ -20,12 +20,12 @@ class Table() {
                     }
                 }
                 if (name == "") {
-                    println("You forgot the part where you were supposed to enter a name. Try again.")
+                    print("You forgot the part where you were supposed to enter a name. Try again.\n\t> ")
                 } else if (unique) {
                     this.players.add(Player(name))
                     nameGotten = true
                 } else {
-                    println("Sorry, that's already $name's name. Try again.")
+                    print("Sorry, that's already $name's name. Try again.\n\t> ")
                 }
             }
         }

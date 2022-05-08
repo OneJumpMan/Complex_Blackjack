@@ -131,7 +131,7 @@ fun main(args: Array<String>) {
     if (table.dealer.countHand() > 21) {
         for (player in table.players) {
             if (player.countHand() >= 21) {
-                println("$player wins!")
+                println(player.name + "wins!")
             }
         }
     } else {

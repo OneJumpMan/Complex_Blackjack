@@ -25,7 +25,6 @@ open class Player(val name : String) {
     }
 
     fun countHand() : Double {
-        var total: Double = 0.0 // The eventual return
         val aces: MutableList<Card> = mutableListOf()// A list to keep track of the aces, which we have to count differently
 
         var real : Double = 0.0
@@ -46,7 +45,7 @@ open class Player(val name : String) {
                     else -> 10
                 }
 
-                if (card.suit == "spades" || card.suit == "clubs") {
+                if (card.suit == "spade" || card.suit == "club") {
                     real += cardValue
                 } else {
                     imaginary += cardValue
@@ -68,7 +67,7 @@ open class Player(val name : String) {
         // This for loop takes care of adding the aces to the total
         for (card in aces) {
             if (card.suit in biggestDimension) {
-                if ("spades" in biggestDimension) {
+                if ("spade" in biggestDimension) {
                     real += if (kotlin.math.sqrt((real + 11) * (real + 11) + imaginary * imaginary) <= 21) {
                         11
                     } else {
@@ -83,6 +82,25 @@ open class Player(val name : String) {
                 }
             }
         }
+        for (card in aces) {
+            if (card.suit in biggestDimension) { }
+            else {
+                if ("heart" in biggestDimension) {
+                    real += if (kotlin.math.sqrt((real + 11) * (real + 11) + imaginary * imaginary) <= 21) {
+                        11
+                    } else {
+                        1
+                    }
+                } else {
+                    imaginary += if (kotlin.math.sqrt(real * real + (imaginary + 11) * (imaginary + 11)) <= 21) {
+                        11
+                    } else {
+                        1
+                    }
+                }
+            }
+        }
+
         return kotlin.math.sqrt(real * real + imaginary * imaginary)
     }
 }
